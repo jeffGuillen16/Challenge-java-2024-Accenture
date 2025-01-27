@@ -1,6 +1,6 @@
 package challengeAccenture.controller;
 
-import challengeAccenture.models.entities.PuntosDeVenta;
+import challengeAccenture.models.entities.PuntoDeVenta;
 import challengeAccenture.service.PuntoDeVentaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,47 +20,41 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/puntos-de-venta")
-public class PuntosDeVentaController {
+public class PuntoDeVentaController {
     @Autowired
-    private final PuntoDeVentaService service;
-    private static final Logger logger = LoggerFactory.getLogger(PuntosDeVentaController.class);
-
+    private PuntoDeVentaService service;
+    private static final Logger logger = LoggerFactory.getLogger(PuntoDeVentaController.class);
+    /*
     public PuntosDeVentaController(PuntoDeVentaService service) {
         this.service = service;
-    }
+    }*/
 
     @GetMapping
-    public ResponseEntity<Collection<PuntosDeVenta>> obtenerTodos() {
+    public ResponseEntity<Collection<PuntoDeVenta>> obtenerTodos() {
         return  ResponseEntity
                 .status(HttpStatus.OK)
                         .body(this.service.obtenerTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PuntosDeVenta> show (@PathVariable Integer id) {
+    public ResponseEntity<PuntoDeVenta> show (@PathVariable Integer id) {
+        logger.info("Realizo un getmapping");
         return  ResponseEntity
                 .status(HttpStatus.OK)
-                .body(this.service.obtenerUnPuntoDeVenta(id));
+                     .body(this.service.obtenerUnPuntoDeVenta(id));
     }
-
-    @PostMapping("/puntos-de-venta")
-    public ResponseEntity<String> agregar(@RequestBody PuntosDeVenta puntoDeVenta) {
+    @PostMapping
+    public ResponseEntity<PuntoDeVenta> agregar(@RequestBody PuntoDeVenta puntoDeVenta) {
         logger.info("Agregando un nuevo punto de venta");
         return ResponseEntity
-                .ok("agregado");
+                .status(HttpStatus.CREATED)
+                     .body(this.service.agregar(puntoDeVenta));
     }
-/*
-*  @PostMapping
-  public ResponseEntity<Long> cargarCliente(@RequestBody Cliente cliente) {
-    return ResponseEntity
-        .status(HttpStatus.CREATED)
-        .body(this.clientesService.crearCliente(cliente));
-  }
-* */
+
     @PutMapping("/{id}")
-    public ResponseEntity<PuntosDeVenta> actualizar(@PathVariable int id, @RequestBody PuntosDeVenta puntoDeVenta) {
+    public ResponseEntity<PuntoDeVenta> actualizar(@PathVariable int id, @RequestBody PuntoDeVenta puntoDeVenta) {
         logger.info("Actualizando punto de venta con ID: " + id);
-        PuntosDeVenta actualizado = service.actualizar(id, puntoDeVenta);
+        PuntoDeVenta actualizado = service.actualizar(id, puntoDeVenta);
         if (actualizado != null) {
             return ResponseEntity.ok(actualizado);
         }
