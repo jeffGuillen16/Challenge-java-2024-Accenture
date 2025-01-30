@@ -2,7 +2,7 @@
 
 # Implementación del Patrón MVC en el Proyecto
 
-En este proyecto, implementé el patrón de diseño **MVC (Modelo-Vista-Controlador)**, una de las arquitecturas más populares para aplicaciones web. Este patrón permite separar claramente las responsabilidades, lo que facilita el mantenimiento y la escalabilidad del sistema. Las tres partes del patrón son:
+Este proyecto se realizo con java 17 y Maven se implemento el patrón de diseño **MVC (Modelo-Vista-Controlador)**, una de las arquitecturas más populares para aplicaciones web. Este patrón permite separar claramente las responsabilidades, lo que facilita el mantenimiento y la escalabilidad del sistema. Las tres partes del patrón son:
 
 ## Modelo (Entidad)
 Representa los datos y la lógica de negocio. En este caso, diseñé las entidades necesarias para interactuar con la base de datos y procesar la información.
