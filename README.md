@@ -16,35 +16,67 @@ A continuación, se presentan las URLs para interactuar con los puntos de venta 
 
 ## 1. Obtener todos los puntos de venta
 **URL:** 
-http://localhost:8080/costos
+http://localhost:8080/puntos-de-venta
 
 **Descripción:** Devuelve una lista de todos los puntos de venta.
 
-## 2. Obtener un punto de venta específico
+## Obtener un punto de venta específico
 **URL:** 
-GET /puntos-de-venta/{id}
+GET ->/puntos-de-venta/{id}
+
+http://localhost:8080/puntos-de-venta/2
+
+{
+    "id": 2,
+    "nombre": "GBA_1"
+}
 
 **Descripción:** Devuelve los detalles de un punto de venta específico, utilizando su ID.
 
+## 2. Actualizar un punto de venta específico
+PUT -> http://localhost:8080/puntos-de-venta/2
+{
+        "id": 2,
+        "nombre": "Miamee"
+    }
+
 ## 3. Crear un nuevo punto de venta
 **URL:**
-POST /puntos-de-venta
+POST -> /puntos-de-venta
+
+POST -> http://localhost:8080/puntos-de-venta
 **Descripción:** Crea un nuevo punto de venta.
 
 **Cuerpo (JSON):**
 json
 {
-  "id": 1,
-  "nombre": "Punto de Venta 1",
-  "ubicacion": "Ubicación A"
-}
-
-PUT /puntos-de-venta/{id}
-{
-  "nombre": "Punto de Venta Actualizado",
-  "ubicacion": "Ubicación B"
-}
+        "id": 12,
+        "nombre": "Calle siempre viva 123"
+    }
 
 ## 4. Eliminar un punto de venta
-DELETE /puntos-de-venta/{id}
+DELETE ->/puntos-de-venta/{id}
+
+DELETE ->http://localhost:8080/puntos-de-venta/2
+
+
+# Costos - Endpoints
+
+A continuación, se presentan las URLs para interactuar con los puntos de venta de la API.
+
+## 1. Obtener todos los puntos de venta
+**URL:** 
+http://localhost:8080/costos
+
+**Descripción:** Devuelve una lista de todos los Costos entre los puntos de venta.
+
+## 2. Crear un nuevo punto de venta
+**URL:**
+POST -> /costos/agregar
+
+
+
+## 3. Eliminar un punto de venta
+DELETE ->/costos/remover
+
 
