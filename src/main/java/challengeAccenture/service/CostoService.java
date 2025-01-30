@@ -48,9 +48,11 @@ public class CostoService {
         cache.get(10).put(5, 5);
     }
 
-    /**
-     * Cargar un nuevo costo entre dos puntos de venta.
-     */
+    public Map<Integer, Map<Integer, Integer>> obtenerCache() {
+        return cache;
+    }
+    //  Cargar un nuevo costo entre dos puntos de venta.
+
     public void agregarCosto(int idA, int idB, int costo) {
         if (costo < 0) {
             throw new IllegalArgumentException("El costo no puede ser menor a 0");
@@ -68,9 +70,9 @@ public class CostoService {
         cache.get(idB).put(idA, costo);
     }
 
-    /**
-     * Remover un costo entre dos puntos de venta.
-     */
+
+    //  Remover un costo entre dos puntos de venta.
+
     public void removerCosto(int idA, int idB) {
         if (cache.containsKey(idA)) {
             cache.get(idA).remove(idB);
@@ -80,9 +82,9 @@ public class CostoService {
         }
     }
 
-    /**
-     * Consultar los puntos de venta directamente conectados a un punto A, y sus costos.
-     */
+ /*
+     // Consultar los puntos de venta directamente conectados a un punto A, y sus costos.
+
     public List<Costo> obtenerCostosDirectos(int idA) {
         if (!cache.containsKey(idA)) {
             return Collections.emptyList();
@@ -97,14 +99,9 @@ public class CostoService {
         return costosDirectos;
     }
 
-    public Map<Integer, Map<Integer, Integer>> obtenerCache() {
-        return cache;
-    }
 
+     // Consultar el camino con costo mínimo entre dos puntos A y B.
 
-    /**
-     * Consultar el camino con costo mínimo entre dos puntos A y B.
-     */
     public Map<String, Object> calcularCaminoMinimo(int idA, int idB) {
         // Usamos el algoritmo de Dijkstra para encontrar el camino mínimo
         Map<Integer, Integer> distancias = new HashMap<>();
@@ -152,11 +149,11 @@ public class CostoService {
             resultado.put("camino", reconstruirCamino(idA, idB, predecesores));
         }
         return resultado;
-    }
+    }*
 
-    /**
-     * Reconstruir el camino desde A a B usando los predecesores.
-     */
+    /*
+     //Reconstruir el camino desde A a B usando los predecesores.
+
     private List<Integer> reconstruirCamino(int idA, int idB, Map<Integer, Integer> predecesores) {
         LinkedList<Integer> camino = new LinkedList<>();
         Integer actual = idB;
@@ -171,5 +168,5 @@ public class CostoService {
         }
 
         return camino;
-    }
+    }*/
 }

@@ -38,26 +38,4 @@ public class Costo {
     public int getCosto() {
         return costo;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Costo costo1 = (Costo) o;
-        return idA == costo1.idA && idB == costo1.idB;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idA, idB);
-    }
-
-    @Override
-    public String toString() {
-        return "Costo{" +
-                "idA=" + idA +
-                ", idB=" + idB +
-                ", costo=" + costo +
-                '}';
-    }
 }

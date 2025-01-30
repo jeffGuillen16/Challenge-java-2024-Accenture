@@ -31,7 +31,7 @@ public class CostoController {
         costoService.removerCosto(idA, idB);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
+    /*
     // Endpoint (3): Consultar costos directos desde un punto
     @GetMapping("/directos/{idA}")
     public List<Costo> obtenerCostosDirectos(@PathVariable int idA) {
@@ -42,5 +42,5 @@ public class CostoController {
     @GetMapping("/minimo")
     public Map<String, Object> obtenerCaminoMinimo(@RequestParam int idA, @RequestParam int idB) {
         return costoService.calcularCaminoMinimo(idA, idB);
-    }
+    }*/
 }
