@@ -11,6 +11,43 @@ public class CostoService {
     // Caché en memoria para almacenar los costos entre puntos de venta
     private final Map<Integer, Map<Integer, Integer>> cache = new HashMap<>();
 
+    public CostoService() {
+        // Inicialización usando `put`
+        cache.put(1, new HashMap<>());
+        cache.get(1).put(2, 2);
+        cache.get(1).put(3, 3);
+        cache.get(1).put(4, 11);
+
+        cache.put(2, new HashMap<>());
+        cache.get(2).put(3, 5);
+        cache.get(2).put(4, 10);
+        cache.get(2).put(5, 14);
+
+        cache.put(3, new HashMap<>());
+        cache.get(3).put(8, 10);
+
+        cache.put(4, new HashMap<>());
+        cache.get(4).put(5, 5);
+        cache.get(4).put(6, 6);
+
+        cache.put(5, new HashMap<>());
+        cache.get(5).put(8, 30);
+
+        cache.put(6, new HashMap<>());
+        cache.get(6).put(7, 32);
+
+        cache.put(7, new HashMap<>());
+        cache.get(7).put(10, 5);
+
+        cache.put(8, new HashMap<>());
+        cache.get(8).put(9, 11);
+
+        cache.put(9, new HashMap<>()); // Nodo aislado (si es necesario)
+
+        cache.put(10, new HashMap<>());
+        cache.get(10).put(5, 5);
+    }
+
     /**
      * Cargar un nuevo costo entre dos puntos de venta.
      */
@@ -22,9 +59,13 @@ public class CostoService {
             throw new IllegalArgumentException("El costo de un punto a sí mismo debe ser 0");
         }
 
-        // Agregar al caché en ambos sentidos
-        cache.computeIfAbsent(idA, k -> new HashMap<>()).put(idB, costo);
-        cache.computeIfAbsent(idB, k -> new HashMap<>()).put(idA, costo);
+        // Inicializar mapas internos si no existen
+        cache.putIfAbsent(idA, new HashMap<>());
+        cache.putIfAbsent(idB, new HashMap<>());
+
+        // Agregar el costo en ambos sentidos
+        cache.get(idA).put(idB, costo);
+        cache.get(idB).put(idA, costo);
     }
 
     /**
@@ -55,6 +96,11 @@ public class CostoService {
         }
         return costosDirectos;
     }
+
+    public Map<Integer, Map<Integer, Integer>> obtenerCache() {
+        return cache;
+    }
+
 
     /**
      * Consultar el camino con costo mínimo entre dos puntos A y B.
@@ -125,25 +171,5 @@ public class CostoService {
         }
 
         return camino;
-    }
-
-    /**
-     * Método para inicializar el caché con datos de ejemplo.
-     */
-    public void inicializarDatos() {
-        agregarCosto(1, 2, 2);
-        agregarCosto(1, 3, 3);
-        agregarCosto(2, 3, 5);
-        agregarCosto(2, 4, 10);
-        agregarCosto(1, 4, 11);
-        agregarCosto(4, 5, 5);
-        agregarCosto(2, 5, 14);
-        agregarCosto(6, 7, 32);
-        agregarCosto(8, 9, 11);
-        agregarCosto(10, 7, 5);
-        agregarCosto(3, 8, 10);
-        agregarCosto(5, 8, 30);
-        agregarCosto(10, 5, 5);
-        agregarCosto(4, 6, 6);
     }
 }

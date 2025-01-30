@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class CostoController {
     @Autowired
     private CostoService costoService;
+    // Endpoint (5): Obtener todos los costos en el caché
+    @GetMapping
+    public Map<Integer, Map<Integer, Integer>> obtenerTodosLosCostos() {
+        return costoService.obtenerCache();
+    }
 
     // Endpoint (1): Cargar un nuevo costo
     @PostMapping("/agregar")
